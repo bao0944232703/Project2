@@ -1,0 +1,222 @@
+--cohort theo qua từng Tháng--
+with min_order_month_table as
+(select customer_id, min(month(transaction_date)) order_month_min from dbo.[99bikes]
+group by customer_id
+),
+distinct_user_id_order_month as
+(select distinct customer_id, month(transaction_date) order_month from dbo.[99bikes]) ,
+final_table as (
+select a.customer_id, a.order_month, b.order_month_min, order_month - order_month_min as month_diff
+from distinct_user_id_order_month a inner join min_order_month_table b
+on a.customer_id = b.customer_id)
+select order_month_min, count(distinct customer_id) as new_user_count,
+count(case when month_diff = 1 then customer_id end) month_1,
+count(case when month_diff = 2 then customer_id end) month_2,
+count(case when month_diff = 3 then customer_id end) month_3,
+count(case when month_diff = 4 then customer_id end) month_4,
+count(case when month_diff = 5 then customer_id end) month_5,
+count(case when month_diff = 6 then customer_id end) month_6,
+count(case when month_diff = 7 then customer_id end) month_7,
+count(case when month_diff = 8 then customer_id end) month_8,
+count(case when month_diff = 9 then customer_id end) month_9,
+count(case when month_diff = 10 then customer_id end) month_10,
+count(case when month_diff = 11 then customer_id end) month_11,
+count(case when month_diff = 12 then customer_id end) month_12
+from final_table
+group by order_month_min
+order by order_month_min asc
+
+
+--Giant Bicycles--
+with min_order_month_table as
+(select customer_id,brand, min(month(transaction_date)) order_month_min from dbo.[99bikes]
+where brand='Giant Bicycles'
+group by customer_id,brand
+),
+distinct_user_id_order_month as
+(select distinct customer_id,brand, month(transaction_date) order_month from dbo.[99bikes] where brand='Giant Bicycles') ,
+final_table as (
+select a.customer_id,a.brand, a.order_month, b.order_month_min, order_month - order_month_min as month_diff
+from distinct_user_id_order_month a inner join min_order_month_table b
+on a.customer_id=b.customer_id)
+select order_month_min, brand, count(distinct customer_id) as new_user_count,
+count(case when month_diff = 1 then customer_id end) month_1,
+count(case when month_diff = 2 then customer_id end) month_2,
+count(case when month_diff = 3 then customer_id end) month_3,
+count(case when month_diff = 4 then customer_id end) month_4,
+count(case when month_diff = 5 then customer_id end) month_5,
+count(case when month_diff = 6 then customer_id end) month_6,
+count(case when month_diff = 7 then customer_id end) month_7,
+count(case when month_diff = 8 then customer_id end) month_8,
+count(case when month_diff = 9 then customer_id end) month_9,
+count(case when month_diff = 10 then customer_id end) month_10,
+count(case when month_diff = 11 then customer_id end) month_11,
+count(case when month_diff = 12 then customer_id end) month_12
+from final_table
+group by order_month_min,brand
+order by order_month_min asc,brand ASC
+
+
+--Norco Bicycles--
+with min_order_month_table as
+(select customer_id,brand, min(month(transaction_date)) order_month_min from dbo.[99bikes]
+where brand='Norco Bicycles'
+group by customer_id,brand
+),
+distinct_user_id_order_month as
+(select distinct customer_id,brand, month(transaction_date) order_month from dbo.[99bikes] where brand='Norco Bicycles') ,
+final_table as (
+select a.customer_id,a.brand, a.order_month, b.order_month_min, order_month - order_month_min as month_diff
+from distinct_user_id_order_month a inner join min_order_month_table b
+on a.customer_id=b.customer_id)
+select order_month_min, brand, count(distinct customer_id) as new_user_count,
+count(case when month_diff = 1 then customer_id end) month_1,
+count(case when month_diff = 2 then customer_id end) month_2,
+count(case when month_diff = 3 then customer_id end) month_3,
+count(case when month_diff = 4 then customer_id end) month_4,
+count(case when month_diff = 5 then customer_id end) month_5,
+count(case when month_diff = 6 then customer_id end) month_6,
+count(case when month_diff = 7 then customer_id end) month_7,
+count(case when month_diff = 8 then customer_id end) month_8,
+count(case when month_diff = 9 then customer_id end) month_9,
+count(case when month_diff = 10 then customer_id end) month_10,
+count(case when month_diff = 11 then customer_id end) month_11,
+count(case when month_diff = 12 then customer_id end) month_12
+from final_table
+group by order_month_min,brand
+order by order_month_min asc,brand ASC
+
+
+
+----OHM Cycles--
+with min_order_month_table as
+(select customer_id,brand, min(month(transaction_date)) order_month_min from dbo.[99bikes]
+where brand='OHM Cycles'
+group by customer_id,brand
+),
+distinct_user_id_order_month as
+(select distinct customer_id,brand, month(transaction_date) order_month from dbo.[99bikes] where brand='OHM Cycles') ,
+final_table as (
+select a.customer_id,a.brand, a.order_month, b.order_month_min, order_month - order_month_min as month_diff
+from distinct_user_id_order_month a inner join min_order_month_table b
+on a.customer_id=b.customer_id)
+select order_month_min, brand, count(distinct customer_id) as new_user_count,
+count(case when month_diff = 1 then customer_id end) month_1,
+count(case when month_diff = 2 then customer_id end) month_2,
+count(case when month_diff = 3 then customer_id end) month_3,
+count(case when month_diff = 4 then customer_id end) month_4,
+count(case when month_diff = 5 then customer_id end) month_5,
+count(case when month_diff = 6 then customer_id end) month_6,
+count(case when month_diff = 7 then customer_id end) month_7,
+count(case when month_diff = 8 then customer_id end) month_8,
+count(case when month_diff = 9 then customer_id end) month_9,
+count(case when month_diff = 10 then customer_id end) month_10,
+count(case when month_diff = 11 then customer_id end) month_11,
+count(case when month_diff = 12 then customer_id end) month_12
+from final_table
+group by order_month_min,brand
+order by order_month_min asc,brand ASC
+
+
+
+--Solex--
+with min_order_month_table as
+(select customer_id,brand, min(month(transaction_date)) order_month_min from dbo.[99bikes]
+where brand='Solex'
+group by customer_id,brand
+),
+distinct_user_id_order_month as
+(select distinct customer_id,brand, month(transaction_date) order_month from dbo.[99bikes] where brand='Solex') ,
+final_table as (
+select a.customer_id,a.brand, a.order_month, b.order_month_min, order_month - order_month_min as month_diff
+from distinct_user_id_order_month a inner join min_order_month_table b
+on a.customer_id=b.customer_id)
+select order_month_min, brand, count(distinct customer_id) as new_user_count,
+count(case when month_diff = 1 then customer_id end) month_1,
+count(case when month_diff = 2 then customer_id end) month_2,
+count(case when month_diff = 3 then customer_id end) month_3,
+count(case when month_diff = 4 then customer_id end) month_4,
+count(case when month_diff = 5 then customer_id end) month_5,
+count(case when month_diff = 6 then customer_id end) month_6,
+count(case when month_diff = 7 then customer_id end) month_7,
+count(case when month_diff = 8 then customer_id end) month_8,
+count(case when month_diff = 9 then customer_id end) month_9,
+count(case when month_diff = 10 then customer_id end) month_10,
+count(case when month_diff = 11 then customer_id end) month_11,
+count(case when month_diff = 12 then customer_id end) month_12
+from final_table
+group by order_month_min,brand
+order by order_month_min asc,brand ASC
+
+
+--Trek Bicycles--
+with min_order_month_table as
+(select customer_id,brand, min(month(transaction_date)) order_month_min from dbo.[99bikes]
+where brand='Trek Bicycles'
+group by customer_id,brand
+),
+distinct_user_id_order_month as
+(select distinct customer_id,brand, month(transaction_date) order_month from dbo.[99bikes] where brand='Trek Bicycles') ,
+final_table as (
+select a.customer_id,a.brand, a.order_month, b.order_month_min, order_month - order_month_min as month_diff
+from distinct_user_id_order_month a inner join min_order_month_table b
+on a.customer_id=b.customer_id)
+select order_month_min, brand, count(distinct customer_id) as new_user_count,
+count(case when month_diff = 1 then customer_id end) month_1,
+count(case when month_diff = 2 then customer_id end) month_2,
+count(case when month_diff = 3 then customer_id end) month_3,
+count(case when month_diff = 4 then customer_id end) month_4,
+count(case when month_diff = 5 then customer_id end) month_5,
+count(case when month_diff = 6 then customer_id end) month_6,
+count(case when month_diff = 7 then customer_id end) month_7,
+count(case when month_diff = 8 then customer_id end) month_8,
+count(case when month_diff = 9 then customer_id end) month_9,
+count(case when month_diff = 10 then customer_id end) month_10,
+count(case when month_diff = 11 then customer_id end) month_11,
+count(case when month_diff = 12 then customer_id end) month_12
+from final_table
+group by order_month_min,brand
+order by order_month_min asc,brand ASC
+
+
+
+--WeareA2B
+with min_order_month_table as
+(select customer_id,brand, min(month(transaction_date)) order_month_min from dbo.[99bikes]
+where brand='WeareA2B'
+group by customer_id,brand
+),
+distinct_user_id_order_month as
+(select distinct customer_id,brand, month(transaction_date) order_month from dbo.[99bikes] where brand='WeareA2B') ,
+final_table as (
+select a.customer_id,a.brand, a.order_month, b.order_month_min, order_month - order_month_min as month_diff
+from distinct_user_id_order_month a inner join min_order_month_table b
+on a.customer_id=b.customer_id)
+select order_month_min, brand, count(distinct customer_id) as new_user_count,
+count(case when month_diff = 1 then customer_id end) month_1,
+count(case when month_diff = 2 then customer_id end) month_2,
+count(case when month_diff = 3 then customer_id end) month_3,
+count(case when month_diff = 4 then customer_id end) month_4,
+count(case when month_diff = 5 then customer_id end) month_5,
+count(case when month_diff = 6 then customer_id end) month_6,
+count(case when month_diff = 7 then customer_id end) month_7,
+count(case when month_diff = 8 then customer_id end) month_8,
+count(case when month_diff = 9 then customer_id end) month_9,
+count(case when month_diff = 10 then customer_id end) month_10,
+count(case when month_diff = 11 then customer_id end) month_11,
+count(case when month_diff = 12 then customer_id end) month_12
+from final_table
+group by order_month_min,brand
+order by order_month_min asc,brand ASC
+
+
+--RFM--
+select distinct customer_id, count(distinct transaction_id) as order_frequency, 
+min(datediff(day,transaction_date,'2017-12-30')) as order_recency,
+sum(list_price) as order_monetary
+from dbo.[99bikes]
+group by customer_id
+order by order_frequency desc
+
+
+
